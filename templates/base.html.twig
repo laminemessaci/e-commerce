@@ -41,7 +41,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ path('home') }}">Home <span class="sr-only">(current)</span></a>
                 </li>
 
             </ul>
@@ -55,6 +55,7 @@
 
 <main role="main">
 
+    {% if block('carousel') is defined %}
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -114,15 +115,15 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-
+    {% endif %}
 
     <!-- Marketing messaging and featurettes
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
-    <div class="container marketing">
+    <div class="container marketing {% if block('carousel') is not defined %} mt-5{% endif %}">
 
-      {% block content %}
+        {% block content %}
         {% endblock %}
     </div><!-- /.container -->
 
