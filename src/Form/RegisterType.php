@@ -18,40 +18,45 @@ class RegisterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname',TextType::class, [
-                'label'=> 'Votre prénom',
-                'constraints' => new Length(2, 25),
-                'attr'=>[
-                    'placeholder'=>'John'
+            ->add('firstname', TextType::class, [
+                'label' => 'Votre prénom',
+                'attr' => [
+                    'placeholder' => 'John'
                 ]
             ])
             ->add('lastname', TextType::class, [
-                'label'=> 'Votre nom',
-                'constraints' => new Length(2, 25),
-                'attr'=>[
-                    'placeholder'=>'Doe'
+                'label' => 'Votre nom',
+                'attr' => [
+                    'placeholder' => 'Doe'
                 ]
             ])
             ->add('email', EmailType::class, [
-                'label'=> 'Votre mail',
-                'constraints' => new Length(2, 60),
-                'attr'=>[
-                    'placeholder'=>'john.doe@exemple.com'
+                'label' => 'Votre mail',
+                'attr' => [
+                    'placeholder' => 'john.doe@exemple.com'
                 ]
             ])
             ->add('password', RepeatedType::class, [
-                'type'=>PasswordType::class,
-                'invalid_message'=>'Les mots de passes doivent être identiques !',
-                'label'=> 'Votre mot de passe',
-                'required'=> true,
-                'first_options'=>['label' => 'Mot de passe'],
-                'second_options'=>['label' => 'Confirmez votre mot de passe']
+                'type' => PasswordType::class,
+                'invalid_message' => 'Les mots de passes doivent être identiques !',
+                'label' => 'Votre mot de passe',
+                'required' => true,
+                'first_options' => [
+                    'label' => 'Mot de passe',
+                    'attr' => [
+                        'placeholder' => 'Votre mot de passe'
+                    ]
+                ],
+                'second_options' => [
+                    'label' => 'Confirmez votre mot de passe',
+                    'attr' => [
+                        'placeholder' => 'Resaisir votre mot de passe'
+                    ]
+                ]
             ])
-
             ->add('submit', SubmitType::class, [
-                'label'=>"S'inscrire"
-            ])
-        ;
+                'label' => "S'inscrire"
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
