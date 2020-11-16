@@ -32,7 +32,8 @@ class EasyAdminSubscriber implements EventSubscriberInterface
     }
     public  function setIllustration(BeforeEntityPersistedEvent $event)
     {
-        $entity = $event->getEntityInstance();
+        //$entity = $event->getEntityInstance();
+        $entity = $_FILES['Product']['tmp_name']['setIllustration'];
         $tmp_name = $entity->getIllustration();
         $fileName = uniqid();
         $extention = pathinfo($_FILES['Product']['name']['illustration'], PATHINFO_EXTENSION);// png, jpg ...etc
