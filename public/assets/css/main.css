@@ -1,0 +1,11 @@
+.footer_customer
+{
+    color: #FFFFFF;
+    text-align: center;
+    position: fixed;
+   background-color: #5a6268;
+    bottom: 2px;
+    width: 100%;
+    padding-top: 25px;
+
+}
