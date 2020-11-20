@@ -1,11 +1,239 @@
-.footer_customer
-{
+
+body {
+    background: url(../images/bg.png);
+
+}
+p{
+
+}
+ul li a{
+    font-size: 16px;
+}
+.site {
+    margin-bottom: 0px;
+}
+
+.titre {
+    font-weight: bold;
+    margin-top: 50px;
+    margin-bottom: 60px;
+}
+
+.footer_customer {
     color: #FFFFFF;
     text-align: center;
-    position: fixed;
-   background-color: #5a6268;
+    position: static;
     bottom: 2px;
     width: 100%;
     padding-top: 25px;
+}
 
+.product-item .caption h5 {
+    text-transform: uppercase;
+    font-size: 16px;
+    margin-bottom: 5px;
+    margin-top: 45px;
+    color: #770088;
+    font-weight: bold;
+}
+
+.product-item .caption .product-subtitle {
+    margin-bottom: 10px;
+    display: block;
+    font-size: 16px;
+}
+
+.product-item .caption {
+    margin-bottom: 80px;
+}
+
+
+.text-logo {
+    font-family: 'Holtwood One SC', sans-serif;
+    color: #770088;
+    text-shadow: 2px 2px #e8f2ff;
+    font-size: 60px;
+    padding: 40px 40px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+
+.text-logo .glyphicon {
+    color: #ffd301;
+    text-shadow: 0px 0px #ffd301;
+}
+
+.product-item .thumbnail-img {
+    background: #770088;
+
+}
+.row .thumbnail
+{
+    background: #7ad6d6;
+    box-shadow: 4px 4px #770088;
+}
+.product-item .thumbnail {
+    margin: 2px;
+}
+
+.product-item .price {
+    background: #770088;
+    box-shadow: 0 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 1px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 1px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-shadow: 3px 3px #333;
+    position: absolute;
+    right: 4px;
+    top: 18px;
+    padding: 5px 10px;
+    font-size: 20px;
+    border-radius: 3px;
+}
+
+.product-item .price:before {
+    border: 4px solid transparent;
+    border-bottom: 4px solid #222226;
+    border-left: 4px solid #212826;
+    content: "";
+    position: absolute;
+    right: 1px;
+    top: -8px;
+}
+
+/*
+Button cart
+ */
+
+.buttons {
+    margin: 0;
+    padding: 0;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.cart-button {
+    position: relative;
+    outline: 0;
+    background-color: blue;
+    color: #fff;
+    border: none;
+    height: 48px;
+    width: 200px;
+    padding: 10px;
+    border-radius: 10px;
+    line-height: 0px;
+    overflow: hidden;
+    cursor: pointer
+}
+
+.cart-button:focus {
+    outline: none !important
+}
+
+.cart-button .fa-shopping-cart {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: -20%;
+    font-size: 1.8em;
+    transform: translate(-50%, -50%)
+}
+
+.cart-button .fa-square {
+    position: absolute;
+    z-index: 1;
+    top: -20%;
+    left: 53%;
+    font-size: 0.8em;
+    transform: translate(-50%, -50%)
+}
+
+.cart-button span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: #fff;
+    transform: translate(-50%, -50%)
+}
+
+.cart-button span.added {
+    opacity: 0
+}
+
+.cart-button.clicked .fa-shopping-cart {
+    animation: cart 2s ease-in forwards
+}
+
+.cart-button.clicked .fa-square {
+    animation: box 2s ease-in forwards
+}
+
+.cart-button.clicked span.add-to-cart {
+    animation: addcart 2s ease-in forwards
+}
+
+.cart-button.clicked span.added {
+    animation: added 2s ease-in forwards
+}
+
+@keyframes cart {
+    0% {
+        left: -10%
+    }
+
+    40%,
+    60% {
+        left: 50%
+    }
+
+    100% {
+        left: 110%
+    }
+}
+
+@keyframes box {
+
+    0%,
+    40% {
+        top: -20%
+    }
+
+    60% {
+        top: 36%;
+        left: 53%
+    }
+
+    100% {
+        top: 40%;
+        left: 112%
+    }
+}
+
+@keyframes addcart {
+
+    0%,
+    30% {
+        opacity: 1
+    }
+
+    30%,
+    100% {
+        opacity: 0
+    }
+}
+
+@keyframes added {
+
+    0%,
+    80% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1
+    }
 }

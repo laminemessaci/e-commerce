@@ -3,43 +3,55 @@
 {% block title %}Connexion La boutique Aya {% endblock %}
 
 {% block content %}
-    <form method="post">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
 
-        {% if app.user %}
-            <div class="mb-3">
-                Vous ête connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-            </div>
-        {% endif %}
+    <div class="container rounded-pill bg-dark text-white mt-5">
+        <div class="form-group m-4 p-4">
+            <form method="post">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
 
-        <h1 class="h3 mb-3 font-weight-normal">Merci de vous connecter</h1>
-        <label for="inputEmail">Votre Email</label>
-        <input type="email" value="{{ last_username }}" name="email" id="inputEmail"  placeholder="Votre adresse email" class="form-control" required
-               autofocus>
-        <label for="inputPassword">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Votre mot de passe" required>
+                {% if app.user %}
+                    <div class="mb-3">
+                        Vous ête connecté en tant que {{ app.user.username }}, <a
+                                href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
+                <div class="container m-4 p-4 text-center">
+                    <h1 class="h3 mb-3 font-weight-normal">Merci de vous connecter</h1>
+                </div>
 
-        <input type="hidden" name="_csrf_token"
-               value="{{ csrf_token('authenticate') }}"
-        >
+                <label for="inputEmail">Votre Email</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
+                       placeholder="Votre adresse email" class="form-control" required
+                       autofocus>
+                <label for="inputPassword">Mot de passe</label>
+                <input type="password" name="password" id="inputPassword" class="form-control"
+                       placeholder="Votre mot de passe" required>
 
-        {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                >
 
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
+                {# Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+            See https://symfony.com/doc/current/security/remember_me.html #}
+
+
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" name="_remember_me"> Remember me
+                    </label>
+                </div>
+
+                <div class=" container text-center">
+                    <button class="btn btn-lg btn-primary text-center m-5" type="submit">
+                        Connexion
+                    </button>
+                </div>
+
+            </form>
+
         </div>
-        #}
-        <div class=" container text-center">
-            <button class="btn btn-lg btn-primary text-center m-5" type="submit">
-                Connexion
-            </button>
-        </div>
 
-    </form>
+    </div>
 {% endblock %}
