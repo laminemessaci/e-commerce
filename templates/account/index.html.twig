@@ -1,15 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon compte{% endblock %}
+{% block title %}Mon compte Aya boutique{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h1> Mon compte</h1>
-        <p> Bienvenu {{ app.user.firstname }} dans votre compte </p>
-        <hr>
-        <a href="{{ path('account_password') }}"> Modifier mot de passe</a><br>
-        <a href="{{ path('account_password') }}"> Ajouter une addresse</a><br>
-        <a href="{{ path('account_password') }}"> Mes Commandes </a><br>
-    </div>
 
+    <div class="container  text-white mt-5 bg-dark rounded">
+        <h2 class="m-4"> Bienvenu {{ app.user.firstname }} dans votre compte !</h2>
+        <p> C'est ici que vous gérer tout vos imformations personnels </p> <hr>
+        <a href="{{ path('account_password') }}">✅ Modifier mot de passe </a> <br>
+        <a href="{{ path('account_address') }}">✅Gérer vos adresses </a>
+    </div>
 {% endblock %}

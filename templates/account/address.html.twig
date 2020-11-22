@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Adresses Aya Boutique{% endblock %}
+
+{% block content %}
+
+    <div class="container rounded  text-white  mt-5">
+
+        <div class="container bg m-2 text-center">
+            <a class="float-left m-2" href="{{ path('account') }}"><img src="{{ asset('assets/images/return.png') }}" height="24px"></a>
+            <a href="{{ path('add_address') }}" class="btn btn-primary btn-sm float-right m-2"><img
+                        src="{{ asset('assets/images/plus.png') }}" width="24px"></a>
+            <h1><a href=""><img src="{{ asset('assets/images/home.png') }}"
+                                width="40px"></a> {% block monTitle %}Vos adresses {% endblock %}</h1>
+            {% if app.user.addresses | length == 0 %}
+                <div class="alert alert-warning" role="alert">
+                    Vous n'avez pas encore ajouter d'adresse dans votre compte!! pour en ajouter une cliquez <a
+                            href="{{ path('add_address') }}">ici </a>
+                </div>
+            {% endif %}
+
+            <div class="row ">
+                {% for address in app.user.addresses %}
+                <div class="col-sm-3 m-4">
+                    <div class="card bg-dark">
+                        <div class="card-body ">
+                            <h5 class="card-title ">{{ address.name }}</h5>
+                            <p class="card-text">{{ address.address }}.</p>
+                            <p class="card-text">{{ address.postal }} - {{ address.city }} {{ address.country }}</p>
+
+                            <div class="row container text-center m-2">
+                                <a href="{{ path('account_address_edit', {'id': address.id}) }}" class="btn btn-primary btn-sm mr-2">Modifier</a>
+                                <a href="{{ path('account_address_delete', {'id': address.id}) }}" class="btn btn-danger btn-sm">Supprimere</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
