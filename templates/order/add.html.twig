@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Valider ma commande - Aya Shop{% endblock %}
+
+{% block content %}
+
+    <div class="container mt-4 text-white">
+        <div class="container text-center mr-4">
+            <h1><a href=""><img src="{{ asset('assets/images/process.png') }}"
+                                width="40px"></a> {% block monTitle %} Ma commande {% endblock %}</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-6 card-body">
+                <div class="container  text-bold my-auto ">
+                    <div class="container text-bold text-center col-form-label"><strong>Mon Adresse:</strong></div>
+                    <div class="bg-secondary m-2 rounded text-center p-2">
+                        {{ delivery | raw }}
+                    </div>
+                    <hr class="bg-white">
+                    <hr class="bg-white">
+                    <div class="container text-bold text-center col-form-label m-2"><strong>Mon transporteur:</strong></div>
+
+                    <div class="container bg-secondary rounded p-2 m-2">
+                        <div class="col-3 bg-dark text-center rounded m-2">
+                            <div class="container text-uppercase">{{ carrier.name }}</div>
+                        </div>
+                        <div class="text-center  rounded m-2">
+                            <div class="container">{{ carrier.description }}</div>
+                        </div>
+                        <div class="col-3  text-center rounded m-2">
+                            <div class="container price-order rounded "> {{ carrier.price| number_format(2, '.') }}€
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6 card-body">
+                <div class="container text-bold text-center col-form-label"><strong>Récapitulatif commande:</strong></div>
+                {% set total = null %}
+
+                {% for key, product in cart %}
+                    <div class="row order-details {% if key > 0 %} mt-2  {% endif %} m-2">
+                        <div class="col-2 ">
+                            <img src="{{ asset('uploads/'~product.product.illustration) }}" alt="img_produit"
+                                 class="thumbnail" width="50px">
+                        </div>
+                        <div class="col-6 my-auto">
+                            <div class="container rounded text-center text-uppercase bg-dark">
+                                {{ product.product.name }}
+                            </div>
+                            <div class="container rounded text-center ">
+                                <small>{{ product.product.subtitle }}</small>
+                            </div>
+
+                        </div>
+                        <div class="col-3">
+                            <p class="text-center"> Qt: <strong class="">{{ product.quantity }}</strong></p>
+                            <p class="text-center price-order">Prix:
+                                <strong>{{ (((product.product.price)*product.quantity)/100) | number_format(2, '.') }}</strong>
+                                € </p>
+                        </div>
+                    </div>
+                    {% set total = total + (product.product.price * product.quantity) %}
+                {% endfor %}
+                <hr class="bg-white">
+                <hr class="bg-white">
+                <div class="col-6 bg-dark p-4 rounded">
+                    <p class="text-bold">Sous total: <strong
+                                class="price-order float-right">{{ (total/100) | number_format(2, '.') }} €</strong></p>
+                    <p class="text-bold">Livraison: <strong
+                                class="price-order float-right">{{ carrier.price| number_format(2, '.') }} €</strong>
+                    </p>
+                    <hr class="bg-white">
+                    <p class="text-bold">Total commande: <strong
+                                class="price-order float-right">{{ ((total/100) + carrier.price ) | number_format(2, '.') }}
+                            €</strong></p>
+                </div>
+            </div>
+            <div class="container text-center">
+                <a class="btn btn-success mt-4 text-white">Payer
+                    |<strong>{{ ((total/100) + carrier.price ) | number_format(2, '.') }} €</strong></a>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

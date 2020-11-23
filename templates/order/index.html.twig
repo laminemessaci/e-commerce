@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Valider ma commande - Aya Shop{% endblock %}
+
+{% block content %}
+
+    <div class="container mt-4 text-white">
+        <div class="container text-center mr-4">
+            <h1><a href=""><img src="{{ asset('assets/images/process.png') }}"
+                                width="40px"></a> {% block monTitle %} Passer ma commande  {% endblock %}</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                {% set formHtml %}
+                    {{ form_start(form, { action:path('order_recap')}) }}
+                    {{ form_label(form.adresses, 'Cochez votre adresse de livraison!') }}
+                    <a href="{{ path('add_address') }}" class="btn btn-primary btn-sm float-right m-2"><img
+                                src="{{ asset('assets/images/plus.png') }}" width="24px"></a>
+                    {{ form_end(form) }}
+                {% endset %}
+                {{ formHtml | replace({'[br]' : '<br/>' })| raw }}
+            </div>
+            <div class="col-md-6 card-body">
+                <div class="container text-center text-bold my-auto">
+                    <strong>Récapitulatif de votre commande:</strong>
+                </div>
+                {% for key, product in cart %}
+                    <div class="row order-details {% if key > 0 %} mt-2 {% endif %}">
+                        <div class="col-2 ">
+                            <img src="{{ asset('uploads/'~product.product.illustration) }}" alt="img_produit"
+                                 class="thumbnail" width="50px">
+                        </div>
+                        <div class="col-6 my-auto">
+                            <div class="container rounded text-center text-uppercase bg-dark">
+                                {{ product.product.name }}
+                            </div>
+                            <div class="container rounded text-center ">
+                                <small>{{ product.product.subtitle }}</small>
+                            </div>
+
+                        </div>
+                        <div class="col-3">
+                            <p class="text-center"> Qt: <strong class="">{{ product.quantity }}</strong></p>
+                            <p class="text-center price-order">Prix:
+                                <strong>{{ (((product.product.price)*product.quantity)/100) | number_format(2, '.') }}</strong>
+                                € </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}

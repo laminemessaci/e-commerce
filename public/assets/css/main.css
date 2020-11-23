@@ -18,6 +18,65 @@ ul li a{
     margin-top: 50px;
     margin-bottom: 60px;
 }
+/*
+login
+ */
+
+.small-block
+{
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/*
+form chek order
+ */
+.form-check
+{
+    border-radius: 5px 5px;
+    background: #6c757d;
+    padding: 20px 65px;
+    margin-top: 7px;
+}
+.order-details
+{
+    background: #6c757d;
+    padding: 10px;
+    border-radius: 5px;
+}
+.col-form-label
+{
+    font-weight: bold;
+    background:  #770088;
+    text-align: center;
+    box-shadow: 0 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 1px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 1px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-shadow: 3px 3px #333;
+    border-radius: 5px;
+}
+.col-3 .price-order
+{
+    background: #770088;
+    border-radius: 2px;
+    box-shadow: 0 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 1px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 1px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-shadow: 3px 3px #333;
+}
+
+.col-6 .price-order
+{
+    background: #770088;
+    border-radius: 2px;
+    box-shadow: 0 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 1px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 1px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-shadow: 3px 3px #333;
+}
 
 .footer_customer {
     color: #FFFFFF;

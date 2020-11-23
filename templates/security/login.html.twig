@@ -4,7 +4,7 @@
 
 {% block content %}
 
-    <div class="container rounded-pill bg-dark text-white mt-5">
+    <div class="container small-block rounded-pill bg-dark text-white mt-5">
         <div class="form-group m-4 p-4">
             <form method="post">
                 {% if error %}
@@ -41,6 +41,9 @@
                     <label>
                         <input type="checkbox" name="_remember_me"> Remember me
                     </label>
+                </div>
+                <div class="container">
+                  <p>Pas encore de compte ? cliquez  <a href="{{ path('register') }}">ici</a></p>
                 </div>
 
                 <div class=" container text-center">
