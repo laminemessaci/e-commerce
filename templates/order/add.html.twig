@@ -18,7 +18,8 @@
                     </div>
                     <hr class="bg-white">
                     <hr class="bg-white">
-                    <div class="container text-bold text-center col-form-label m-2"><strong>Mon transporteur:</strong></div>
+                    <div class="container text-bold text-center col-form-label m-2"><strong>Mon transporteur:</strong>
+                    </div>
 
                     <div class="container bg-secondary rounded p-2 m-2">
                         <div class="col-3 bg-dark text-center rounded m-2">
@@ -37,7 +38,8 @@
                 </div>
             </div>
             <div class="col-md-6 card-body">
-                <div class="container text-bold text-center col-form-label"><strong>Récapitulatif commande:</strong></div>
+                <div class="container text-bold text-center col-form-label"><strong>Récapitulatif commande:</strong>
+                </div>
                 {% set total = null %}
 
                 {% for key, product in cart %}
@@ -79,8 +81,8 @@
                 </div>
             </div>
             <div class="container text-center">
-                <a class="btn btn-success mt-4 text-white">Payer
-                    |<strong>{{ ((total/100) + carrier.price ) | number_format(2, '.') }} €</strong></a>
+                <a class="btn btn-primary btn-lg mt-4 text-white">Payer
+                    <strong>{{ ((total/100) + carrier.price ) | number_format(2, '.') }} €</strong></a>
             </div>
         </div>
     </div>
