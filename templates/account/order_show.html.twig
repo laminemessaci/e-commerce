@@ -24,33 +24,48 @@
                 <p>Réference de ma commande: <strong>{{ order.reference }}</strong></p>
                 <p>Transporteur choisi: <strong>{{ order.carriername }}</strong></p>
                 <p>Détails commande: </p>
-                <table class="table table-bordered">
+                <table class="table table-bordered  text-white">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Produit</th>
+                        <th scope="col">Quantité</th>
+                        <th scope="col">Prix unitaire</th>
+                        <th scope="col">Total</th>
+
                     </tr>
                     </thead>
                     <tbody>
                     {% for product in order.orderDetails %}
                         <tr>
-                            {{ dump(product) }}
-                            <th class="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <td>{{ product.product }}</td>
+                            <td>X {{ product.quantity }}</td>
+                            <td>{{ ((product.price)/100)|number_format(2, '.', ',') }} €</td>
+                            <td>{{ ((product.price)/100)|number_format(2, '.', ',') }} €</td>
                         </tr>
                     {% endfor %}
                     </tbody>
                 </table>
-            </div>
 
+                <div class="container text-bold text-right text-white">
+                    <div class=" inline-block">
+                        <strong>Sous total: {{ ((order.getTotal)/100)|number_format(2, '.', ',') }} €</strong>
+                    </div>
+                    <div class=" inline-block">
+                        <strong>Livraison: {{ ((order.carrierprice)/100)|number_format(2, '.', ',') }} €</strong>
+                    </div>
+                    <div class=" inline-block">
+                        <strong>Total: {{ ((order.carrierPrice + order.getTotal)/100)|number_format(2, ',', '.') }}
+                            €</strong>
+                    </div>
+
+                </div>
+            </div>
 
         </div>
 
 
     </div>
+
+
 
 {% endblock %}
