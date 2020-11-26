@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class OrderDetails
 {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -59,11 +60,16 @@ class OrderDetails
 
         return $this;
     }
+    public function __toString()
+    {
+        return $this->getProduct().' qt: '.$this->getQuantity();
+    }
 
     public function getProduct(): ?string
     {
         return $this->product;
     }
+
 
     public function setProduct(string $product): self
     {

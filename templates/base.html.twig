@@ -18,7 +18,7 @@
     <link href='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css'>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
     <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css'>
-
+    {% block javascript %} {% endblock %}
 
     <style>
         .bd-placeholder-img {
@@ -165,17 +165,18 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-    {% endif %}
 
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    {% endif %}
 
 
     {% block content %}
         {% block monTitle %}{% endblock %}
     {% endblock %}
 
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
 
     <div class="container marketing {% if block('carousel') is not defined %} mt-5{% endif %}">
 
@@ -195,4 +196,5 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script>
 </body>
+{% block script %} {% endblock %}
 </html>

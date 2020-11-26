@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
-
+{% block javascript %}
+<script src="https://js.stripe.com/v3/"></script>
+{% endblock %}
 {% block title %}Valider ma commande - Aya Shop{% endblock %}
+
 
 {% block content %}
 
@@ -29,7 +32,8 @@
                             <div class="container">{{ carrier.description }}</div>
                         </div>
                         <div class="col-3  text-center rounded m-2">
-                            <div class="container price-order rounded "> {{ carrier.price| number_format(2, '.') }}€
+                            <div class="container price-order rounded "> {{ (( carrier.price)/100)|number_format(2,'.',',') }}
+                                €
                             </div>
                         </div>
 
@@ -60,7 +64,7 @@
                         <div class="col-3">
                             <p class="text-center"> Qt: <strong class="">{{ product.quantity }}</strong></p>
                             <p class="text-center price-order">Prix:
-                                <strong>{{ (((product.product.price)*product.quantity)/100) | number_format(2, '.') }}</strong>
+                                <strong>{{ (((product.product.price)*product.quantity)/100) | number_format(2, '.',',') }}</strong>
                                 € </p>
                         </div>
                     </div>
@@ -70,22 +74,61 @@
                 <hr class="bg-white">
                 <div class="col-6 bg-dark p-4 rounded">
                     <p class="text-bold">Sous total: <strong
-                                class="price-order float-right">{{ (total/100) | number_format(2, '.') }} €</strong></p>
+                                class="price-order float-right">{{ (total/100) | number_format(2, '.', ',') }}
+                            €</strong></p>
                     <p class="text-bold">Livraison: <strong
-                                class="price-order float-right">{{ carrier.price| number_format(2, '.') }} €</strong>
+                                class="price-order float-right">{{ ((carrier.price)/100)| number_format(2, '.', ',') }}
+                            €</strong>
                     </p>
                     <hr class="bg-white">
                     <p class="text-bold">Total commande: <strong
-                                class="price-order float-right">{{ ((total/100) + carrier.price ) | number_format(2, '.') }}
+                                class="price-order float-right">{{ ((total/100) + (carrier.price)/100 ) | number_format(2, '.', ',') }}
                             €</strong></p>
                 </div>
             </div>
             <div class="container text-center">
-                <a class="btn btn-primary btn-lg mt-4 text-white">Payer
-                    <strong>{{ ((total/100) + carrier.price ) | number_format(2, '.') }} €</strong></a>
+                <a class="btn btn-primary btn-lg mt-4 text-white" id="checkout-button">Payer
+                    <strong>{{ ((total/100) + (carrier.price)/100 ) | number_format(2, '.', ',') }} €</strong></a>
             </div>
         </div>
     </div>
 
 
+{% endblock %}
+
+{% block script %}
+
+    <script type="text/javascript">
+        // Create an instance of the Stripe object with your publishable API key
+        var stripe = Stripe("pk_test_51HkS8uIrTqkijeRInNglbpdpTCaiB1iPZpxPMj5rXUA2YHDd6kJsYv5Hueau1Nq2BOuVDFV09uYL3tZydBWQ8qBr00n0wtIF8u");
+        var checkoutButton = document.getElementById("checkout-button");
+        checkoutButton.addEventListener("click", function () {
+            fetch("/commande/create-session/{{ reference }}", {
+                method: "POST",
+            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (session) {
+                    if (session.error == 'order') {
+                        //redirection
+                        window.location.replace('{{ path('order') }}')
+                    } else {
+                        return stripe.redirectToCheckout({sessionId: session.id});
+                    }
+
+                })
+                .then(function (result) {
+                    // If redirectToCheckout fails due to a browser or network
+                    // error, you should display the localized error message to your
+                    // customer using error.message.
+                    if (result.error) {
+                        alert(result.error.message);
+                    }
+                })
+                .catch(function (error) {
+                    console.error("Error:", error);
+                });
+        });
+    </script>
 {% endblock %}

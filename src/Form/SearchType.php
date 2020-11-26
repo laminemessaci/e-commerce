@@ -23,7 +23,7 @@ class SearchType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Votre recherce ...',
-                    'class' =>'form-control-sm'
+                    'class' =>'form-control-sm '
                 ]
             ])
             ->add('categories', EntityType::class, [
@@ -32,7 +32,10 @@ class SearchType extends AbstractType
                 'required' => false,
                 'class' => Category::class,
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
+                'attr'=>[
+                    'class'=> 'bg-transparent text-white m-0 p-0'
+                ]
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Chercher',

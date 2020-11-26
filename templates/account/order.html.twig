@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes commandes Aya Boutique{% endblock %}
+
+{% block content %}
+
+    <div class="container rounded  text-white  mt-5">
+
+        <div class="container bg m-2 text-center">
+            <a class="float-left m-2" href="{{ path('account') }}"><img src="{{ asset('assets/images/return.png') }}"
+                                                                        height="24px"></a>
+
+            <h1><a href=""><img src="{{ asset('assets/images/order.png') }}"
+                                width="40px"></a> {% block monTitle %}Vos commmandes {% endblock %}</h1>
+            {% if orders | length == 0 %}
+                <div class="alert alert-warning" role="alert">
+                    Vous n'avez pas encore effectué de commande!
+                </div>
+            {% else %}
+
+                <table class="table mt-5">
+                    <thead class="thead-dark">
+                    <tr>
+
+                        <th scope="col">Référence</th>
+                        <th scope="col">Passée le</th>
+                        <th scope="col">Produit</th>
+                        <th scope="col">Total</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for order in orders %}
+                        <tr class="text-white">
+                            <th scope="row">{{ order.reference }}</th>
+                            <td>{{ order.createdAt|date('d/m/y') }}</td>
+                            <td>{{ order.orderDetails|length }}</td>
+                            <td>{{ ((order.carrierPrice + order.getTotal)/100)|number_format(2, ',', '.') }} €</td>
+                            <td class="text-right"><a href="{{ path('account_order_show', {'reference': order.reference}) }}">Voir ma commande</a> </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ma commande Aya Boutique{% endblock %}
+
+{% block content %}
+
+    <div class="container rounded  text-white  mt-5">
+
+        <div class="container bg m-2 text-center">
+            <a class="float-left m-2" href="{{ path('account_order') }}"><img
+                        src="{{ asset('assets/images/return.png') }}"
+                        height="24px"></a>
+
+            <h1><a href=""><img src="{{ asset('assets/images/order.png') }}"
+                                width="40px"></a> {% block monTitle %}Ma commmandes {{ order.reference }} {% endblock %}
+            </h1>
+
+        </div>
+        <hr>
+        <hr>
+        <div class="container">
+            <div class="container bg-dark rounded">
+                <p>Commande passée le: <strong>  {{ order.createdAt| date('d/m/y') }} </strong></p>
+                <p>Réference de ma commande: <strong>{{ order.reference }}</strong></p>
+                <p>Transporteur choisi: <strong>{{ order.carriername }}</strong></p>
+                <p>Détails commande: </p>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for product in order.orderDetails %}
+                        <tr>
+                            {{ dump(product) }}
+                            <th class="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+{% endblock %}

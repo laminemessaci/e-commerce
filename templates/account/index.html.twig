@@ -4,10 +4,35 @@
 
 {% block content %}
 
-    <div class="container small text-white mt-5 bg-dark rounded">
-        <h2 class="m-4"> Bienvenu {{ app.user.firstname }} dans votre compte !</h2>
-        <p> C'est ici que vous gérer tout vos imformations personnels </p> <hr>
-        <a href="{{ path('account_password') }}">✅ Modifier mot de passe </a> <br>
-        <a href="{{ path('account_address') }}">✅Gérer vos adresses </a>
+    <div class=" container small-block text-center text-white mt-5 bg-dark rounded ">
+        <h2 class="m-4"> Bienvenu {{ app.user.firstname }} </h2>
+        <p> C'est ici que vous gérer tout vos imformations personnels </p>
+        <hr>
+        <div class="row  m-4">
+            <div class="col-md-3 m-2 card-body text-white text-center">
+                <div class="row ">
+                    <h6 class="m-2 text-center">Gérer mot de passe</h6>
+                    <a href="{{ path('account_password') }}"><img src=" {{ asset('assets/images/password.png') }}" class="thumbnail img-fluid"> </a>
+                </div>
+            </div>
+
+            <div class="col-md-3 m-2 card-body text-white text-center">
+                <div class="row ">
+                    <h6 class="m-2 text-center">Gérer vos adresses</h6>
+                    <a href="{{ path('account_address') }}"><img src=" {{ asset('assets/images/location.png') }}"
+                                                                 class="thumbnail img-fluid"> </a>
+                </div>
+            </div>
+
+            <div class="col-md-3 m-2 card-body text-white text-center">
+                <div class="row ">
+                    <h6 class="m-2 text-center">Gérer vos commandes</h6>
+                    <a href="{{ path('account_order') }}"><img src=" {{ asset('assets/images/order.png') }}"
+                                                               class="thumbnail img-fluid"> </a>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 {% endblock %}

@@ -105,7 +105,11 @@ form chek order
 .product-item .caption {
     margin-bottom: 80px;
 }
-
+.form-check
+{
+    background: transparent;
+    margin: 0px;
+}
 
 .text-logo {
     font-family: 'Holtwood One SC', sans-serif;

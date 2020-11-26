@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block title %}Erreur de paiement  Aya shop 100% français {% endblock %}
+
+{% block content %}
+
+    <div class="container text-center mt-5">
+        <h1><a href=""><img src="{{ asset('assets/images/process.png') }}"
+                            width="40px"></a> {% block monTitle %} Erreur de paiement {% endblock %}</h1>
+    </div>
+    <div class="container ">
+        <div class="container">
+            <div class="container text-center text-bold text-white">
+                <p>Bonjour  <strong>{{ order.user.fullName }} </strong> </p>
+                <div class=" alert alert-danger">
+                    <p> Votre paiement a échoué pour votre commande N°: <strong>{{ order.reference }}</p>
+                    <p>Une confirmation d'erreur vient de vous être envoyée par email à l'adresse: <strong>{{ order.user.email }} </strong> </p>
+
+                    <p> <a href="{{ path('order') }}" class="btn btn-warning">Réessayer le paiement </a>  </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

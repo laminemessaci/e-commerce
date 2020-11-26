@@ -27,9 +27,10 @@ class OrderController extends AbstractController
 
     /**
      * @Route("/commande", name="order")
+     * @param Cart $cart
      * @return Response
      */
-    public function index(Cart $cart, Request $request): Response
+    public function index(Cart $cart): Response
     {
         if (!$this->getUser()->getAddresses()->getValues()) {
             return $this->redirectToRoute('add_address');
@@ -72,6 +73,8 @@ class OrderController extends AbstractController
             $delivery_content .= '<br/>' . $delivery->getCountry();
             //dd($delivery_content);
             $order = new Order();
+            $reference = $date->format('dmy') . '-' . uniqid();
+            $order->setReference($reference);
             $order->setUser($this->getUser());
             $order->setCreatedAt($date);
             $order->setCarrierName($carriers->getName());
@@ -89,16 +92,18 @@ class OrderController extends AbstractController
                 $orderDetails->setProduct($product['product']->getName());
                 $orderDetails->setQuantity($product['quantity']);
                 $orderDetails->setPrice($product['product']->getPrice());
-                $orderDetails->setTotal($product['product']->getPrice() * $product['quantity']);
+                $orderDetails->setTotal(($product['product']->getPrice() * $product['quantity'])/100);
                 $this->entityManager->persist($orderDetails);
             }
 
             $this->entityManager->flush();
 
+
             return $this->render('order/add.html.twig', [
                 'cart' => $cart->getFullCart(),
                 'carrier' => $carriers,
-                'delivery' => $delivery_content
+                'delivery' => $delivery_content,
+                'reference' => $order->getReference()
             ]);
         }
         return $this->redirectToRoute('cart');
