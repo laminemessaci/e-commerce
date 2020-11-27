@@ -20,6 +20,14 @@
         <hr>
         <div class="container">
             <div class="container bg-dark rounded">
+                <p>Statut de la commande: </p>
+                {% if order.state == 1 %}
+                    <div class="alert alert-success"> Commande validée</div>
+                {% elseif order.state == 2 %}
+                    <div class="alert alert-warning"> En preparation</div>
+                {% elseif order.state == 3 %}
+                    <div class="alert alert-danger"> En cours de livraison</div>
+                {% endif %}
                 <p>Commande passée le: <strong>  {{ order.createdAt| date('d/m/y') }} </strong></p>
                 <p>Réference de ma commande: <strong>{{ order.reference }}</strong></p>
                 <p>Transporteur choisi: <strong>{{ order.carriername }}</strong></p>
@@ -57,7 +65,6 @@
                         <strong>Total: {{ ((order.carrierPrice + order.getTotal)/100)|number_format(2, ',', '.') }}
                             €</strong>
                     </div>
-
                 </div>
             </div>
 

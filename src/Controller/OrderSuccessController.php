@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\services\Cart;
+use App\services\MailJet;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,14 +35,18 @@ class OrderSuccessController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        //vider le panier
-        $cart->remove();
+
         //Modifier le statut 'isPaid' a  1
-        if (!$order->getIsPaid()){
-            $order->setIsPaid(1);
+        if ($order->getState() == 0){
+            //vider le panier
+            $cart->remove();
+            $order->setState(1);
             $this->entityManager->flush();
         }
             //Envoyer un email pour confirmer la commande
+        $mail = new MailJet();
+        $content = 'Bienvenu '.$order->getUser()->getFirstname().' dans notre boutique en ligne. <br/> Marci pour votre commande! à bientôt !';
+        $mail->send($order->getUser()->getEmail(), $order->getUser()->getFirstname(), "Votre commande boutique de aya est bien validée!", $content );
 
             //Afficher les information au user
             return $this->render('order_success/index.html.twig', [

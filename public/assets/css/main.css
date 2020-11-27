@@ -166,6 +166,15 @@ form chek order
 }
 
 /*
+Dashboard administrateur
+ */
+.action-update_delivery
+{
+    margin-right: 20px;
+
+}
+
+/*
 Button cart
  */
 
@@ -300,3 +309,5 @@ Button cart
         opacity: 1
     }
 }
+
+
