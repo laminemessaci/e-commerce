@@ -1,7 +1,9 @@
 
 body {
     background: url(../images/bg.png);
-
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    color: #5a5a5a;
 }
 p{
 
@@ -66,7 +68,21 @@ form chek order
     color: #fff;
     text-shadow: 3px 3px #333;
 }
-
+.price
+{
+    background: #770088;
+    box-shadow: 0 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 1px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 1px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-shadow: 3px 3px #333;
+    position: absolute;
+    right: -8px;
+    top: 18px;
+    padding: 5px 5px;
+    font-size: 20px;
+    border-radius: 3px;
+}
 .col-6 .price-order
 {
     background: #770088;
@@ -148,14 +164,13 @@ form chek order
     color: #fff;
     text-shadow: 3px 3px #333;
     position: absolute;
-    right: 4px;
+    right: 0px;
     top: 18px;
     padding: 5px 10px;
     font-size: 20px;
-    border-radius: 3px;
+    border-radius: 4px;
 }
-
-.product-item .price:before {
+.price:before {
     border: 4px solid transparent;
     border-bottom: 4px solid #222226;
     border-left: 4px solid #212826;
@@ -174,140 +189,190 @@ Dashboard administrateur
 
 }
 
-/*
-Button cart
+/**
+Nouveau style bootstrap 5
  */
 
-.buttons {
-    margin: 0;
-    padding: 0;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center
+
+.wrapper {
+    margin-top: 30px
 }
 
-.cart-button {
-    position: relative;
-    outline: 0;
-    background-color: blue;
-    color: #fff;
-    border: none;
-    height: 48px;
-    width: 200px;
-    padding: 10px;
-    border-radius: 10px;
-    line-height: 0px;
-    overflow: hidden;
+.card {
+    border: 1px solid #eee;
     cursor: pointer
 }
 
-.cart-button:focus {
-    outline: none !important
+.weight {
+    margin-top: -65px;
+    transition: all 0.5s
 }
 
-.cart-button .fa-shopping-cart {
-    position: absolute;
-    z-index: 2;
-    top: 50%;
-    left: -20%;
-    font-size: 1.8em;
-    transform: translate(-50%, -50%)
+.weight small {
+    color: #e2dede
 }
 
-.cart-button .fa-square {
-    position: absolute;
-    z-index: 1;
-    top: -20%;
-    left: 53%;
-    font-size: 0.8em;
-    transform: translate(-50%, -50%)
+.buttons {
+    padding: 10px;
+    background-color: #d6d4d44f;
+    border-radius: 4px;
+    position: relative;
+    margin-top: 7px;
+    opacity: 0;
+    transition: all 0.8s
 }
 
-.cart-button span {
+.dot {
+    height: 14px;
+    width: 14px;
+    background-color: green;
+    border-radius: 50%;
     position: absolute;
-    left: 50%;
-    top: 50%;
+    left: 27%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 8px;
     color: #fff;
-    transform: translate(-50%, -50%)
-}
-
-.cart-button span.added {
     opacity: 0
 }
 
-.cart-button.clicked .fa-shopping-cart {
-    animation: cart 2s ease-in forwards
+.cart-button {
+    height: 48px
 }
 
-.cart-button.clicked .fa-square {
-    animation: box 2s ease-in forwards
+.cart-button:focus {
+    box-shadow: none
 }
 
-.cart-button.clicked span.add-to-cart {
-    animation: addcart 2s ease-in forwards
+.cart {
+    position: relative;
+    height: 48px !important;
+    width: 50px;
+    margin-right: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 11px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: 1s ease-in-out;
+    overflow: hidden
 }
 
-.cart-button.clicked span.added {
-    animation: added 2s ease-in forwards
+.cart-button.clicked span.dot {
+    animation: item 0.3s ease-in forwards
 }
 
-@keyframes cart {
+@keyframes item {
     0% {
-        left: -10%
+        opacity: 1;
+        top: 30%;
+        left: 30%
     }
 
-    40%,
-    60% {
-        left: 50%
+    25% {
+        opacity: 1;
+        left: 26%;
+        top: 0%
     }
 
-    100% {
-        left: 110%
-    }
-}
-
-@keyframes box {
-
-    0%,
-    40% {
-        top: -20%
+    50% {
+        opacity: 1;
+        left: 23%;
+        top: -22%
     }
 
-    60% {
-        top: 36%;
-        left: 53%
-    }
-
-    100% {
-        top: 40%;
-        left: 112%
-    }
-}
-
-@keyframes addcart {
-
-    0%,
-    30% {
-        opacity: 1
-    }
-
-    30%,
-    100% {
-        opacity: 0
-    }
-}
-
-@keyframes added {
-
-    0%,
-    80% {
-        opacity: 0
+    75% {
+        opacity: 1;
+        left: 19%;
+        top: -18%
     }
 
     100% {
-        opacity: 1
+        opacity: 1;
+        left: 14%;
+        top: 28%
     }
 }
 
+.card:hover .buttons {
+    opacity: 1
+}
 
+.card:hover .weight {
+    margin-top: 10px
+}
+
+.card:hover {
+    transform: scale(1.04);
+    z-index: 2;
+    overflow: hidden
+}
+
+/*
+show product
+ */
+
+.act-price {
+    color: red;
+    font-weight: 700
+}
+
+.dis-price {
+    text-decoration: line-through
+}
+
+.about {
+    font-size: 14px
+}
+
+.color {
+    margin-bottom: 10px
+}
+
+label.radio {
+    cursor: pointer
+}
+
+label.radio input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    pointer-events: none
+}
+
+label.radio span {
+    padding: 2px 9px;
+    border: 2px solid #ff0000;
+    display: inline-block;
+    color: #ff0000;
+    border-radius: 3px;
+    text-transform: uppercase
+}
+
+label.radio input:checked+span {
+    border-color: #ff0000;
+    background-color: #ff0000;
+    color: #fff
+}
+
+.btn-danger {
+    background-color: #ff0000 !important;
+    border-color: #ff0000 !important
+}
+
+.btn-danger:hover {
+    background-color: #da0606 !important;
+    border-color: #da0606 !important
+}
+
+.btn-danger:focus {
+    box-shadow: none
+}
+
+.cart i {
+    margin-right: 10px
+}

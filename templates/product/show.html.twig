@@ -4,6 +4,7 @@
 
 
 {% block content %}
+    {#
     <div class="container rounded bg-white mt-4">
 
         <div class="  card-body col-md-12  rounded m-4 my-auto">
@@ -28,23 +29,92 @@
                 </div>
                 <div class="buttons">
                     <a href="{{ path('add_to_cart', {'id': product.id}) }}"
-                       class="  btn-lg" role="button"><span
-                                class="glyphicon glyphicon-shopping-cart"></span>
-                        <button class="cart-button
-                                                     rounded-pill"><span
+                       class="  btn-lg" role="button"><span class="glyphicon glyphicon-shopping-cart"></span>
+                        <button class="cart-button rounded-pill"><span
                                     class="add-to-cart"> Ajouter</span>
-                            <span class="added">Produit ajouté</span> <i
-                                    class="fa fa-shopping-cart"></i> <i
-                                    class="fa fa-square"></i></button>
+                            <span class="added">Produit ajouté</span> <i class="fa fa-shopping-cart"></i> <i class="fa fa-square"></i></button>
                     </a>
                 </div>
-
             </div>
-
 
         </div>
 
     </div>
+    #}
+    <div class="container mt-5 mb-5">
+        <div class="row d-flex justify-content-center">
 
+            <div class="col-md-10">
+
+                <div class="card">
+                    <a class="float-left m-2" href="{{ path('products') }}"><img
+                                src="{{ asset('assets/images/return.png') }}"
+                                height="24px"></a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="images p-3">
+                                <div class="text-center p-4"> <a href="{{ path('product', {'slug': product.slug}) }}"><img id="main-image"
+                                                src="{{ asset('uploads/'~product.illustration) }}"
+                                                alt="{{ product.name }}"
+                                                class="img-fluid img-thumbnail"></a></div>
+                                <div class="thumbnail text-center"><img onclick="change_image(this)"
+                                                                        src="https://i.imgur.com/Rx7uKd0.jpg"
+                                                                        width="70"> <img onclick="change_image(this)"
+                                                                                         src="https://i.imgur.com/Dhebu4F.jpg"
+                                                                                         width="70"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="product p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <i class="fa fa-shopping-cart text-muted"></i>
+                                </div>
+                                <div class="mt-4 mb-3"><span class="text-uppercase text-muted brand">Orianz</span>
+                                    <h5 class="text-uppercase">Men's slim fit t-shirt</h5>
+                                    <div class="price d-flex flex-row align-items-center"><span
+                                                class="act-price">$20</span>
+                                        <div class="ml-2"><small class="dis-price">$59</small> <span>40% OFF</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="about">Shop from a wide range of t-shirt from orianz. Pefect for your everyday
+                                    use, you could pair it with a stylish pair of jeans or trousers complete the
+                                    look.</p>
+                                <div class="sizes mt-5">
+                                    <h6 class="text-uppercase">Size</h6> <label class="radio"> <input type="radio"
+                                                                                                      name="size"
+                                                                                                      value="S" checked>
+                                        <span>S</span> </label> <label class="radio"> <input type="radio" name="size"
+                                                                                             value="M"> <span>M</span>
+                                    </label> <label class="radio"> <input type="radio" name="size" value="L">
+                                        <span>L</span> </label> <label class="radio"> <input type="radio" name="size"
+                                                                                             value="XL"> <span>XL</span>
+                                    </label> <label class="radio"> <input type="radio" name="size" value="XXL"> <span>XXL</span>
+                                    </label>
+                                </div>
+
+                                <div class="buttons d-flex flex-row">
+                                    <div class="cart">
+                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart" fill="currentColor"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                  d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="container">
+                                        <a class="btn btn-success cart-button btn-block"
+                                           href="{{ path('add_to_cart', {'id': product.id}) }}"><span class="dot">1</span>Ajouter au panier</a>
+                                    </div>
+
+                                </div>
+                                <i class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

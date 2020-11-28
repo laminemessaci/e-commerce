@@ -18,5 +18,9 @@ class Search
      */
     public $categories = [];
 
+    public function __toString()
+    {
+        return '';
+    }
 
 }

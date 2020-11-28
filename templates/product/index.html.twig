@@ -7,41 +7,28 @@
     <div class="container-fluid site ">
 
         <div class="row">
-            <div class=" container  col-md-3 bg-transparent" style="margin-top: 160px">
+            <div class=" container  col-md-2 bg-transparent" style="margin-top: 150px">
                 <h2>Filtre</h2>
                 {{ form(form) }}
-
             </div>
-            <div class="col-md-9">
+            <div class="col-md-10">
 
                 <div class="container titre">
                     <h1 class=" text-logo rounded-pill p-2 m-2  text-center "> {% block monTitre %} Nos produits{% endblock %} </h1>
                 </div>
 
-                <div class="row product-container">
+                <div class="wrapper">
+                    <div class="row product-container ">
 
-                    {% for product in products %}
-                        <div class=" col-md-3">
-                            <div class="product-item text-center thumbnail ">
+                        <div class="row g-1">
+                            {% for product in products %}
 
-                                <a href="{{ path('product', {'slug': product.slug}) }}"><img
-                                            src="{{ asset('uploads/'~product.illustration) }}"
-                                            alt="{{ product.name }}"
-                                            class="img-thumbnail"></a>
-                                <div class="price">
-                                    <span> {{ (product.price/100) | number_format(2, ',', '.') }} €</span>
+                                <div class=" col-auto mb-5">
+                                    {% include'product/single_product.html.twig' %}
                                 </div>
-
-                                <div class="caption">
-                                    <h5>{{ product.name }}</h5>
-                                    <div class="product-subtitle "><span>{{ product.subtitle }}</span></div>
-                                </div>
-
-                            </div>
+                            {% endfor %}
                         </div>
-
-                    {% endfor %}
-
+                    </div>
                 </div>
             </div>
 
