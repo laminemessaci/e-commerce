@@ -10,13 +10,20 @@
         <div class="container text-white text-center m-4">
             <h1>La tendance du moment </h1>
         </div>
+        <div class="wrapper">
+            <div class="row product-container ">
 
-        <div class="container-fluid " style="display: flex">
-            {% for product in products %}
-                <div class="col-auto">
-                    {% include'product/single_product.html.twig' %}
+                <div class="row g-1">
+
+                    {% for product in products %}
+                        <div class="col-auto m-2">
+                            {% include'product/single_product.html.twig' %}
+                        </div>
+                    {% endfor %}
+
                 </div>
-            {% endfor %}
+            </div>
+
         </div><!-- /.row -->
 
 
