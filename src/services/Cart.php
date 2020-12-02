@@ -101,4 +101,13 @@ class Cart
         $panier = $this->session->get('panier', []);
         return array_sum($panier);
     }
+    public function countProducts()
+    {
+        $cart = $this->session->get('cart');
+        $count = 0;
+        foreach ($cart as $product) {
+            $count += $product['quantity'];
+        };
+        return $count;
+    }
 }

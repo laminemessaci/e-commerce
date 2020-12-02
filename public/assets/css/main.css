@@ -193,7 +193,10 @@ Dashboard administrateur
 Nouveau style bootstrap 5
  */
 
-
+.row .card:hover {
+    border: 1px solid #f8f8f8;
+    box-shadow: 3px 3px 30px rgb(166, 255, 144)
+}
 .wrapper {
     margin-top: 30px
 }

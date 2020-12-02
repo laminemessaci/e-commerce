@@ -4,6 +4,7 @@
 namespace App\EventSubscriber;
 
 
+use App\Entity\Header;
 use App\Entity\Product;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
@@ -34,12 +35,13 @@ class EasyAdminSubscriber implements EventSubscriberInterface
 
     }
 
-    public function uploadIllustration( $event){
+    public function uploadIllustration($event, $entityName)
+    {
         $entity = $event->getEntityInstance();
         //$entity = $_FILES['Product']['tmp_name']['illustration'];
-        $tmp_name = $_FILES['Product']['tmp_name']['illustration'];
+        $tmp_name = $_FILES[$entityName]['tmp_name']['illustration'];
         $fileName = uniqid();
-        $extention = pathinfo($_FILES['Product']['name']['illustration'], PATHINFO_EXTENSION);// png, jpg ...etc
+        $extention = pathinfo($_FILES[$entityName]['name']['illustration'], PATHINFO_EXTENSION);// png, jpg ...etc
         //dd($extention);
 
         $project_dir = $this->appKernel->getProjectDir();
@@ -50,21 +52,30 @@ class EasyAdminSubscriber implements EventSubscriberInterface
 
     public function updateIllustration(BeforeEntityUpdatedEvent $event)
     {
-        if (!($event ->getEntityInstance() instanceof Product)){
+        if (!($event->getEntityInstance() instanceof Product) && !($event->getEntityInstance() instanceof Header)) {
             return;
         }
-        if ($_FILES['Product']['tmp_name']['illustration'] != "") {
-          $this->uploadIllustration($event);
+        $reflextion = new \ReflectionClass($event->getEntityInstance());
+        $entityName = $reflextion->getShortName();
+        //dd($entityName);
+
+        if ($_FILES[$entityName]['tmp_name']['illustration'] != "") {
+            $this->uploadIllustration($event , $entityName);
         }
 
     }
 
     public function setIllustration(BeforeEntityPersistedEvent $event)
     {
-        if (!($event ->getEntityInstance() instanceof Product)){
+
+        if (!($event->getEntityInstance() instanceof Product) && !($event->getEntityInstance() instanceof Header)) {
             return;
         }
-        $this->uploadIllustration($event);
+        $reflextion = new \ReflectionClass($event->getEntityInstance());
+        $entityName = $reflextion->getShortName();
+        //dd($entityName);
+
+        $this->uploadIllustration($event , $entityName);
     }
 
 

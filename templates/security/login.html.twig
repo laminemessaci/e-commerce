@@ -4,7 +4,19 @@
 
 {% block content %}
 
+
     <div class="container small-block rounded-pill bg-dark text-white mt-5">
+
+        {% for message in app.flashes('notice') %}
+            <div class="container alert alert-success alert-dismissible fade show small-block mt-5 " role="alert">
+                <strong>Info! </strong> {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+
+
         <div class="form-group m-4 p-4">
             <form method="post">
                 {% if error %}
@@ -21,6 +33,7 @@
                     <h1 class="h3 mb-3 font-weight-normal">Merci de vous connecter</h1>
                 </div>
 
+
                 <label for="inputEmail">Votre Email</label>
                 <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
                        placeholder="Votre adresse email" class="form-control" required
@@ -33,10 +46,6 @@
                        value="{{ csrf_token('authenticate') }}"
                 >
 
-                {# Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-            See https://symfony.com/doc/current/security/remember_me.html #}
-
-
                 <div class="checkbox mb-3">
                     <label>
                         <input type="checkbox" name="_remember_me"> Remember me
@@ -44,6 +53,7 @@
                 </div>
                 <div class="container">
                   <p>Pas encore de compte ? cliquez  <a href="{{ path('register') }}">ici</a></p>
+                    <p>Vous avez oublié votre mot de passe? cliquez  <a href="{{ path('reset_password') }}">ici</a></p>
                 </div>
 
                 <div class=" container text-center">
@@ -57,4 +67,5 @@
         </div>
 
     </div>
+
 {% endblock %}
