@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cette pages est introuvable! - Aya Boutique{% endblock %}
+
+
+{% block content %}
+    <div class="container-fluid site ">
+
+        <div class="row">
+            <div class=" container  col-md-2 bg-transparent" style="margin-top: 150px">
+                <h2>Page introuvable !</h2>
+                <p> Désolé, cette page ne semble pas être accessible pour le moment.</p>
+                <div class="container text-center">
+                    <a href="{{ path('home') }}" class="btn btn-sm btn-primary">Revenir a l'accueil</a>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}

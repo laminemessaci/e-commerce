@@ -1,0 +1,88 @@
+body {
+    background-color: #f7f6f6
+}
+
+.social-list {
+    display: inline-flex;
+
+}
+
+.social-list li {
+    list-style: none;
+    margin-right: 10px
+}
+
+.maincard {
+    position: relative;
+    width: 120px;
+    height: 80px
+}
+
+.thecard {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: all 0.8s ease
+}
+
+.thecard:hover {
+    transform: rotateY(180deg)
+}
+
+.thefront {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #770088;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid #eee;
+    box-shadow: 5px 6px 6px 2px #e9ecef;
+    padding: 4px
+}
+
+.theback {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color:#770088;
+    color: #fff;
+    border-radius: 10px;
+    transform: rotateY(180deg);
+    border: 1px solid #eee;
+    box-shadow: 5px 6px 6px 2px #e9ecef;
+    padding: 4px
+}
+
+.social-text small {
+    font-size: 20px
+}
+
+@media (max-width:700px) {
+    .social-list {
+        display: block
+    }
+}
+
+.facebook {
+    background: #3b5998
+}
+
+.instagram {
+    background: #3f729b
+}
+
+.youtube {
+    background: #ff0000
+}
+
+.whatsapp {
+    background: #4dc247
+}
+
+.pinterest {
+    background: #cb2027
+}

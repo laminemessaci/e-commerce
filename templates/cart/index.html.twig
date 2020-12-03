@@ -4,7 +4,7 @@
 
 {% block content %}
 
-    <div class="container text-uppercase text-center">
+    <div class="container text-uppercase text-center mt-5">
         <h1> {% block title %} Mon panier {% endblock %} </h1>
     </div>
 
@@ -89,4 +89,7 @@
 
 
 
+{% endblock %}
+{% block footer %}
+    {% include'footer/footer.html.twig' %}
 {% endblock %}

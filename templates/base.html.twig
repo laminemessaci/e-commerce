@@ -8,16 +8,19 @@
     <meta name="generator" content="Jekyll v4.1.1">
     <title>{% block title %} La Boutique de Aya - Vinted Made in france{% endblock %}</title>
 
+
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link href="{{ asset('assets/css/contact.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/social.css') }}" rel="stylesheet">
     <script src="{{ asset('assets/js/product_card.js') }}"></script>
 
 
     <link href='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css'>
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css'>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
 
 
     {% block javascript %} {% endblock %}
@@ -61,7 +64,7 @@
                                 class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ path('home') }}">Contact <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ path('contact') }}">Contact <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
             <div class="row mr-3">
@@ -89,25 +92,6 @@
                                 (<small>{{ app.user.firstname }}</small>)<span class="sr-only">(current)</span></a>
                         </li>
 
-                        <li class="nav-item dropdown nav-user"><a class="nav-link nav-user-img" href="#"
-                                                                  id="navbarDropdownMenuLink2" data-toggle="dropdown"
-                                                                  aria-haspopup="true" aria-expanded="false"><img
-                                        src="https://img.icons8.com/dusk/100/000000/user-female-circle.png" width="30px"
-                                        alt="" class="user-avatar-md rounded-circle"></a>
-                            <div class="dropdown-menu dropdown-menu-right nav-user-dropdown"
-                                 aria-labelledby="navbarDropdownMenuLink2">
-                                <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name">{{ app.user.firstname }}</h5> <span
-                                            class="status"></span><span class="ml-2">Available</span>
-                                </div>
-                                <a class="dropdown-item" href="{{ path('account') }}"><i class="fas fa-user mr-2"></i>Mon compte</a>
-                                <a
-                                        class="dropdown-item" href="{{ path('account') }}"><i
-                                            class="fas fa-cog mr-2"></i>Paramètres</a> <a
-                                        class="dropdown-item" href="{{ path('app_logout') }}"><i
-                                            class="fas fa-power-off mr-2"></i>Déconnexion</a>
-                            </div>
-                        </li>
                     {% endif %}
 
                 </ul>
@@ -167,9 +151,9 @@
             </a>
         </div>
     {% endif %}
-    {% block content %}
-        {% block monTitle %}{% endblock %}
-    {% endblock %}
+
+
+    {% block content %}{% endblock %}
 
     <!-- Marketing messaging and featurettes
     ================================================== -->
@@ -179,18 +163,14 @@
 
     </div><!-- /.container -->
 
-    <div class="footer_customer">
-        <!-- FOOTER -->
-        <footer class="container">
-            <p class=""><a href="#">Back to top</a><br>
-                &copy; 2020 Boutique de Aya <br>
-                <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
-            </p>
 
-        </footer>
-    </div>
+    <div class="container marketing {% if block('footer') is not defined %} mt-5{% endif %}">
+
+    </div><!-- /.container -->
+
+
 </main>
-
+{% block footer %} {% endblock %}
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script>
 </body>
